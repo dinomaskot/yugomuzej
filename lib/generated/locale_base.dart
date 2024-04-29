@@ -25,12 +25,15 @@ class LocaleBase {
   Localeexibitions get exibitions => _exibitions;
   late Localeididthis _ididthis;
   Localeididthis get ididthis => _ididthis;
+  late Localesouvenires _souvenires;
+  Localesouvenires get souvenires => _souvenires;
 
   void initAll() {
     _home = Localehome(Map<String, String>.from(_data['home']));
     _mainExibition = LocalemainExibition(Map<String, String>.from(_data['mainExibition']));
     _exibitions = Localeexibitions(Map<String, String>.from(_data['exibitions']));
     _ididthis = Localeididthis(Map<String, String>.from(_data['ididthis']));
+    _souvenires = Localesouvenires(Map<String, String>.from(_data['souvenires']));
   }
 }
 
@@ -305,5 +308,60 @@ class Localeididthis {
   String get text => _data["text"]!;
   String get author => _data["author"]!;
   String get title => _data["title"]!;
+}
+
+class Localesouvenires {
+  late final Map<String, String> _data;
+  Localesouvenires(this._data);
+
+  String getByKey(String key) {
+    return _data[key]!;
+  }
+
+  String get menu => _data["menu"]!;
+  String get s1 => _data["s1"]!;
+  String get s1desc => _data["s1desc"]!;
+  String get s2 => _data["s2"]!;
+  String get s2desc => _data["s2desc"]!;
+  String get s3 => _data["s3"]!;
+  String get s3desc => _data["s3desc"]!;
+  String get s4 => _data["s4"]!;
+  String get s4desc => _data["s4desc"]!;
+  String get s5 => _data["s5"]!;
+  String get s5desc => _data["s5desc"]!;
+  String get s6 => _data["s6"]!;
+  String get s6desc => _data["s6desc"]!;
+  String get s7 => _data["s7"]!;
+  String get s7desc => _data["s7desc"]!;
+  String get s8 => _data["s8"]!;
+  String get s8desc => _data["s8desc"]!;
+  String get s9 => _data["s9"]!;
+  String get s9desc => _data["s9desc"]!;
+  String get s10 => _data["s10"]!;
+  String get s10desc => _data["s10desc"]!;
+  String get s11 => _data["s11"]!;
+  String get s11desc => _data["s11desc"]!;
+  String get s12 => _data["s12"]!;
+  String get s12desc => _data["s12desc"]!;
+  String get s13 => _data["s13"]!;
+  String get s13desc => _data["s13desc"]!;
+  String get s14 => _data["s14"]!;
+  String get s14desc => _data["s14desc"]!;
+  String get s15 => _data["s15"]!;
+  String get s15desc => _data["s15desc"]!;
+  String get s16 => _data["s16"]!;
+  String get s16desc => _data["s16desc"]!;
+  String get s17 => _data["s17"]!;
+  String get s17desc => _data["s17desc"]!;
+  String get s18 => _data["s18"]!;
+  String get s18desc => _data["s18desc"]!;
+  String get s19 => _data["s19"]!;
+  String get s19desc => _data["s19desc"]!;
+  String get s20 => _data["s20"]!;
+  String get s20desc => _data["s20desc"]!;
+  String get s21 => _data["s21"]!;
+  String get s21desc => _data["s21desc"]!;
+  String get s22 => _data["s22"]!;
+  String get s22desc => _data["s22desc"]!;
 }
 

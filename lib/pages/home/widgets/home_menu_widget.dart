@@ -19,7 +19,7 @@ class HomeMenu extends StatelessWidget {
             MenuItem(title: loc.home.exibitions, path: '/exhibition'),
             MenuItem(title: loc.home.iDidThis, path: '/ididthis'),
             MenuItem(title: loc.home.placeForKids, path: '/placeforkids'),
-            MenuItem(title: loc.home.artSouvenires, path: '/artsouvenires'),
+            MenuItem(title: loc.home.artSouvenires, path: '/souvenires'),
             MenuItem(title: loc.home.shop, path: '/shop'),
           ],
         ),
