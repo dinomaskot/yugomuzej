@@ -1,0 +1,52 @@
+name: yugomuzej
+description: "Yugomuzej"
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.4 <4.0.0"
+
+dependencies:
+  carousel_slider: ^4.2.1
+  cupertino_icons: ^1.0.6
+  flutter:
+    sdk: flutter
+  flutter_inappwebview: ^6.0.0
+  flutter_localizations:
+    sdk: flutter
+  go_router: ^13.2.4
+  sized_context: ^1.0.0+4
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/home/
+    - assets/home/images/
+    - assets/_assets/images/
+    - assets/_assets/images/main_exhibition/
+    - assets/main_exibition/
+    - assets/exhibitions/
+    - assets/exhibitions/01/
+    - assets/exhibitions/02/
+    - assets/exhibitions/03/
+    - assets/i_did_this/
+    - assets/souvenires/
+    - locales/
+
+  fonts:
+    - family: Arial
+      fonts:
+        - asset: assets/_assets/fonts/arial/ARIAL.TTF 
+        - asset: assets/_assets/fonts/arial/ARIALBD.TTF
+          # style: bold
+    - family: ArialBlack
+      fonts:
+        - asset: assets/_assets/fonts/arial/ARIBLK.TTF
