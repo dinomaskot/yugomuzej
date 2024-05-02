@@ -1,11 +1,11 @@
 {
   "home": {
-    "exibitions": "",
-    "mainExibitions": "",
+    "exibitions": "expositions",
+    "mainExibitions": "exposition permanente",
     "iDidThis": "\"I did this\"",
     "placeForKids": "",
-    "artSouvenires": "",
-    "shop": "",
+    "artSouvenires": "art souvenirs",
+    "shop": "boutique",
     "author": "",
     "video": "",
     "desktop": "",
@@ -286,5 +286,17 @@
     "s21desc": "19x18x15cm",
     "s22": "0022 Gračanica",
     "s22desc": "20x20x18cm"
+  },
+  "shop": {
+    "menu": "boutique",
+    "souvenires": "souvenirs",
+    "drawings": "dessins",
+    "s1": "Yougomusée sont en vente à Beoizlog\n(Centre Culturel de Belgrade) ",
+    "s2": "Centre Culturel de Belgrade > ",
+    "s3": "[couverts]",
+    "s4": "[couvert]",
+    "s5": "[nappe]",
+    "s6": "[coussins]",
+    "kbclink": "www.kcb.org.rs/"
   }
 }

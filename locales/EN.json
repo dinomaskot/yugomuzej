@@ -286,5 +286,17 @@
     "s21desc": "19x18x15cm",
     "s22": "0022 Gračanica",
     "s22desc": "20x20x18cm"
+  },
+  "shop": {
+    "menu": "shop",
+    "souvenires": "souvenires",
+    "drawings": "drawings",
+    "s1": "YUGOMUZEJ souvenires are available at \nBEOIZLOG  in Belgrade Cultural Center.",
+    "s2": "Belgrade Cultural Center > ",
+    "s3": "[tableware]",
+    "s4": "[tableware]",
+    "s5": "[bedware]",
+    "s6": "[bedware]",
+    "kbclink": "www.kcb.org.rs/"
   }
 }

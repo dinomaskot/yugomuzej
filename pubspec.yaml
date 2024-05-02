@@ -39,6 +39,9 @@ flutter:
     - assets/exhibitions/03/
     - assets/i_did_this/
     - assets/souvenires/
+    - assets/shop/
+    - assets/shop/drawings/
+    - assets/shop/souvenires/
     - locales/
 
   fonts:

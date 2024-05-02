@@ -4,6 +4,9 @@ import 'package:yugomuzej/pages/exhibitions/exibitionsSubPage/exibitionsSubPage.
 import 'package:yugomuzej/pages/home/home_page.dart';
 import 'package:yugomuzej/pages/i_did_this/iDidThisPage.dart';
 import 'package:yugomuzej/pages/main_exibition/mainExibition.dart';
+import 'package:yugomuzej/pages/shop/drawings/drawingsPage.dart';
+import 'package:yugomuzej/pages/shop/shopPage.dart';
+import 'package:yugomuzej/pages/shop/souvenires/souveniresPage.dart';
 import 'package:yugomuzej/pages/souvenires/SouveniresPage.dart';
 
 final router = GoRouter(
@@ -31,6 +34,20 @@ final router = GoRouter(
         GoRoute(
           path: ':id',
           builder: (context, state) => ExibitionSubPage(id: state.pathParameters['id']!),
+        ),
+      ],
+    ),
+    GoRoute(
+      path: '/shop',
+      builder: (context, state) => const ShopPage(),
+      routes: [
+        GoRoute(
+          path: 'drawings',
+          builder: (context, state) => const ShopDrawingsPage(),
+        ),
+        GoRoute(
+          path: 'souvenires',
+          builder: (context, state) => const ShopSouveniresPage(),
         ),
       ],
     ),

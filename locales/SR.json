@@ -286,5 +286,17 @@
     "s21desc": "19x18x15cm",
     "s22": "0022 Gračanica",
     "s22desc": "20x20x18cm"
+  },
+  "shop": {
+    "menu": "shop",
+    "souvenires": "suveniri",
+    "drawings": "crteži",
+    "s1": "YUGOMUZEJ suveniri se mogu kupiti u\nBEOIZLOGU Kulturnog centra Beograda.",
+    "s2": "Kulturni centar Beograda > ",
+    "s3": "[pribor za jelo]",
+    "s4": "[pribor za jelo]",
+    "s5": "[posteljina]",
+    "s6": "[jastuci]",
+    "kbclink": "www.kcb.org.rs/"
   }
 }
