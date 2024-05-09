@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:yugomuzej/pages/author/authorPage.dart';
 import 'package:yugomuzej/pages/exhibitions/exibitionsPage.dart';
 import 'package:yugomuzej/pages/exhibitions/exibitionsSubPage/exibitionsSubPage.dart';
 import 'package:yugomuzej/pages/home/home_page.dart';
@@ -50,6 +51,10 @@ final router = GoRouter(
           builder: (context, state) => const ShopSouveniresPage(),
         ),
       ],
+    ),
+    GoRoute(
+      path: '/author',
+      builder: (context, state) => const AuthorPage(),
     ),
   ],
 );

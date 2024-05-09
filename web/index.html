@@ -60,32 +60,32 @@
         });
       });
 
-      function removeAllowPresentationSandbox() {
-        var allElements = document.getElementsByTagName("*");
+      // function removeAllowPresentationSandbox() {
+      //   var allElements = document.getElementsByTagName("*");
 
-        for (var i = 0; i < allElements.length; i++) {
-          var element = allElements[i];
+      //   for (var i = 0; i < allElements.length; i++) {
+      //     var element = allElements[i];
 
-          if (element.hasAttribute("sandbox")) {
-            var sandboxValue = element.getAttribute("sandbox");
+      //     if (element.hasAttribute("sandbox")) {
+      //       var sandboxValue = element.getAttribute("sandbox");
 
-            if (sandboxValue && sandboxValue.includes("allow-presentation")) {
-              var updatedSandboxValue = sandboxValue
-                .replace(/\ballow-presentation\b/g, "")
-                .trim();
-              element.setAttribute("sandbox", updatedSandboxValue);
+      //       if (sandboxValue && sandboxValue.includes("allow-presentation")) {
+      //         var updatedSandboxValue = sandboxValue
+      //           .replace(/\ballow-presentation\b/g, "")
+      //           .trim();
+      //         element.setAttribute("sandbox", updatedSandboxValue);
 
-              console.log(
-                'Removed "allow-presentation" from element:',
-                element
-              );
-            }
-          }
-        }
-      }
+      //         console.log(
+      //           'Removed "allow-presentation" from element:',
+      //           element
+      //         );
+      //       }
+      //     }
+      //   }
+      // }
 
-      // Call the function to remove 'allow-presentation' from all elements
-      removeAllowPresentationSandbox();
+      // // Call the function to remove 'allow-presentation' from all elements
+      // removeAllowPresentationSandbox();
     </script>
   </body>
 </html>

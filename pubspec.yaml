@@ -16,8 +16,11 @@ dependencies:
   flutter_inappwebview: ^6.0.0
   flutter_localizations:
     sdk: flutter
+  flutter_widget_from_html: ^0.15.0
   go_router: ^13.2.4
+  provider: ^6.1.2
   sized_context: ^1.0.0+4
+  url_launcher: ^6.2.6
 
 dev_dependencies:
   flutter_lints: ^3.0.0
@@ -39,6 +42,7 @@ flutter:
     - assets/exhibitions/03/
     - assets/i_did_this/
     - assets/souvenires/
+    - assets/author/
     - assets/shop/
     - assets/shop/drawings/
     - assets/shop/souvenires/
@@ -47,7 +51,7 @@ flutter:
   fonts:
     - family: Arial
       fonts:
-        - asset: assets/_assets/fonts/arial/ARIAL.TTF 
+        - asset: assets/_assets/fonts/arial/ARIAL.TTF
         - asset: assets/_assets/fonts/arial/ARIALBD.TTF
           # style: bold
     - family: ArialBlack

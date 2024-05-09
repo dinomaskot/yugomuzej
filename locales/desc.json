@@ -298,5 +298,23 @@
     "s5": "",
     "s6": "",
     "kbclink": ""
+  },
+  "author": {
+    "menu": "",
+    "exhibitions": "",
+    "books": "",
+    "workshops": "",
+    "awards": "",
+    "museums": "",
+    "interview": "",
+    "aboutDesc": "",
+    "name": "",
+    "email": "",
+    "exhibitionsDesc": "",
+    "booksDesc": "",
+    "workshopsDesc": "",
+    "awardsDesc": "",
+    "museumsDesc": "",
+    "interviewDesc": ""
   }
 }

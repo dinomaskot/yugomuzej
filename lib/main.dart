@@ -1,112 +1,46 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:yugomuzej/_config/app_languages.dart';
 import 'package:yugomuzej/_config/router.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  AppLanguage appLanguage = AppLanguage();
+  appLanguage.fetchLocale();
+  runApp(MyApp(appLanguage: appLanguage));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppLanguage appLanguage;
+  const MyApp({super.key, required this.appLanguage});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: ThemeData(scaffoldBackgroundColor: Colors.white, fontFamily: 'Arial'),
-      routerConfig: router,
-      localizationsDelegates: const [
-        LocDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      scrollBehavior: MyCustomScrollBehavior(),
-    );
-    // return MaterialApp(
-    //   title: 'Flutter Demo',
-    //   theme: ThemeData(
-    //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-    //     useMaterial3: true,
-    //   ),
-    //   home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    // );
-  }
-}
-
-// class GlobalMaterialLocalizations {}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            Center(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  double maxWidth = MediaQuery.of(context).size.width * 0.8; // 80% of screen width
-                  double maxHeight = MediaQuery.of(context).size.height * 0.6; // 60% of screen height
-
-                  // Set fixed dimensions for InAppWebView
-                  double fixedWidth = 700;
-                  double fixedHeight = 400;
-
-                  // Determine the actual width and height to use
-                  double width = fixedWidth < maxWidth ? fixedWidth : maxWidth;
-                  double height = fixedHeight < maxHeight ? fixedHeight : maxHeight;
-
-                  return ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: width,
-                      maxHeight: height,
-                    ),
-                    child: InAppWebView(
-                      initialFile: "assets/main/uvod.html",
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+    return ChangeNotifierProvider(
+      create: (_) => appLanguage,
+      child: Consumer<AppLanguage>(
+        builder: (context, model, child) {
+          return MaterialApp.router(
+            theme: ThemeData(scaffoldBackgroundColor: Colors.white, fontFamily: 'Arial'),
+            routerConfig: router,
+            localizationsDelegates: [
+              LocDelegate(),
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            locale: model.appLocal,
+            supportedLocales: const [
+              Locale('en', 'ENG'),
+              Locale('sr', 'SRB'),
+              Locale('fr', 'FRA'),
+            ],
+            scrollBehavior: MyCustomScrollBehavior(),
+          );
+        },
       ),
     );
   }

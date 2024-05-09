@@ -29,6 +29,8 @@ class LocaleBase {
   Localesouvenires get souvenires => _souvenires;
   late Localeshop _shop;
   Localeshop get shop => _shop;
+  late Localeauthor _author;
+  Localeauthor get author => _author;
 
   void initAll() {
     _home = Localehome(Map<String, String>.from(_data['home']));
@@ -37,6 +39,7 @@ class LocaleBase {
     _ididthis = Localeididthis(Map<String, String>.from(_data['ididthis']));
     _souvenires = Localesouvenires(Map<String, String>.from(_data['souvenires']));
     _shop = Localeshop(Map<String, String>.from(_data['shop']));
+    _author = Localeauthor(Map<String, String>.from(_data['author']));
   }
 }
 
@@ -386,5 +389,31 @@ class Localeshop {
   String get s5 => _data["s5"]!;
   String get s6 => _data["s6"]!;
   String get kbclink => _data["kbclink"]!;
+}
+
+class Localeauthor {
+  late final Map<String, String> _data;
+  Localeauthor(this._data);
+
+  String getByKey(String key) {
+    return _data[key]!;
+  }
+
+  String get menu => _data["menu"]!;
+  String get exhibitions => _data["exhibitions"]!;
+  String get books => _data["books"]!;
+  String get workshops => _data["workshops"]!;
+  String get awards => _data["awards"]!;
+  String get museums => _data["museums"]!;
+  String get interview => _data["interview"]!;
+  String get aboutDesc => _data["aboutDesc"]!;
+  String get name => _data["name"]!;
+  String get email => _data["email"]!;
+  String get exhibitionsDesc => _data["exhibitionsDesc"]!;
+  String get booksDesc => _data["booksDesc"]!;
+  String get workshopsDesc => _data["workshopsDesc"]!;
+  String get awardsDesc => _data["awardsDesc"]!;
+  String get museumsDesc => _data["museumsDesc"]!;
+  String get interviewDesc => _data["interviewDesc"]!;
 }
 

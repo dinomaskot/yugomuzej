@@ -14,7 +14,8 @@ class ShopDrawingsPageDesktop extends StatefulWidget {
 }
 
 class _ShopDrawingsPageDesktopState extends State<ShopDrawingsPageDesktop> {
-  int index = 1;
+  final scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     final loc = Localizations.of<LocaleBase>(context, LocaleBase)!;
@@ -75,100 +76,61 @@ class _ShopDrawingsPageDesktopState extends State<ShopDrawingsPageDesktop> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Menu(title: "I did this"),
+                        Menu(
+                          title: loc.shop.menu,
+                          back: true,
+                        ),
                         const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 420,
-                                height: 311,
-                                child: Scrollbar(
-                                  thumbVisibility: true,
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          loc.ididthis.author,
-                                        ),
-                                        Text(
-                                          loc.ididthis.title,
-                                          // style: TextStyle(fontSize: 16),
-                                        ),
-                                        const SizedBox(height: 5),
-                                        Text(
-                                          loc.ididthis.text,
-                                          style: const TextStyle(fontSize: 12),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                        Container(
+                          height: 313,
+                          child: Scrollbar(
+                            controller: scrollController,
+                            thumbVisibility: true,
+                            child: GridView(
+                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              controller: scrollController,
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 10,
+                                childAspectRatio: 16 / 13,
                               ),
-                              SizedBox(
-                                width: 20,
-                                child: RotatedBox(
-                                  quarterTurns: 3,
-                                  child: Center(
-                                    child: Text(
-                                      loc.mainExibition.click,
-                                      style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 10),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 200,
-                                height: 313,
-                                child: Scrollbar(
-                                  thumbVisibility: true,
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        for (int i = 1; i <= 16; i++)
-                                          Hero(
-                                            tag: 'image1',
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.of(context).push(
-                                                  HeroDialogRoute(
-                                                    builder: (BuildContext context) {
-                                                      return Center(
-                                                        child: AlertDialog(
-                                                          content: Hero(
-                                                            tag: 'image$i',
-                                                            child: SizedBox(
-                                                              child: Image.asset("assets/i_did_this/$i.webp"),
-                                                            ),
-                                                          ),
-                                                          actions: <Widget>[
-                                                            IconButton(
-                                                              icon: const Icon(Icons.close),
-                                                              onPressed: Navigator.of(context).pop,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      );
-                                                    },
+                              children: [
+                                for (int i = 1; i <= 48; i++)
+                                  Hero(
+                                    tag: 'image$i',
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          HeroDialogRoute(
+                                            builder: (BuildContext context) {
+                                              return Center(
+                                                child: AlertDialog(
+                                                  content: Hero(
+                                                    tag: 'image$i',
+                                                    child: SizedBox(
+                                                      child: Image.asset("assets/shop/drawings/$i.webp"),
+                                                    ),
                                                   ),
-                                                );
-                                              },
-                                              child: Container(
-                                                padding: const EdgeInsets.fromLTRB(0, 10, 15, 0),
-                                                child: Image.asset("assets/i_did_this/$i.webp"),
-                                              ),
-                                            ),
+                                                  actions: <Widget>[
+                                                    IconButton(
+                                                      icon: const Icon(Icons.close),
+                                                      onPressed: Navigator.of(context).pop,
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
                                           ),
-                                      ],
+                                        );
+                                      },
+                                      child: Container(
+                                        // padding: const EdgeInsets.fromLTRB(0, 10, 15, 0),
+                                        child: Image.asset("assets/shop/drawings/$i.webp"),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                         const SizedBox(height: 15),

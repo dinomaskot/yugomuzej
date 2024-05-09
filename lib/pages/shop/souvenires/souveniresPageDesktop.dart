@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:yugomuzej/_config/globals.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 import 'package:yugomuzej/pages/home/widgets/home_menu_widget.dart';
@@ -121,9 +123,12 @@ class _ShopSouveniresPageDesktopState extends State<ShopSouveniresPageDesktop> {
                                             loc.shop.s2,
                                             style: const TextStyle(fontSize: 12),
                                           ),
-                                          Text(
-                                            loc.shop.kbclink,
-                                            style: const TextStyle(fontSize: 12),
+                                          InkWell(
+                                            onTap: () => launchUrlString("https://${loc.shop.kbclink}"),
+                                            child: Text(
+                                              loc.shop.kbclink,
+                                              style: const TextStyle(fontSize: 12),
+                                            ),
                                           ),
                                         ],
                                       ),

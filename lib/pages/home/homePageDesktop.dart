@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:yugomuzej/widgets/bottomMenu.dart';
 
 import 'widgets/home_menu_widget.dart';
 import 'dart:html' as html;
@@ -42,42 +44,42 @@ class HomePageDesktop extends StatelessWidget {
                 },
               ),
             ),
-            // Center(
-            //   child: LayoutBuilder(
-            //     builder: (context, constraints) {
-            //       double maxWidth = MediaQuery.of(context).size.width * 0.8; // 80% of screen width
-            //       double maxHeight = MediaQuery.of(context).size.height * 0.6; // 60% of screen height
+            Center(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  double maxWidth = MediaQuery.of(context).size.width * 0.8; // 80% of screen width
+                  double maxHeight = MediaQuery.of(context).size.height * 0.6; // 60% of screen height
 
-            //       // Set fixed dimensions for InAppWebView
-            //       double fixedWidth = 700;
-            //       double fixedHeight = 400;
+                  // Set fixed dimensions for InAppWebView
+                  double fixedWidth = 700;
+                  double fixedHeight = 400;
 
-            //       // Determine the actual width and height to use
-            //       double width = fixedWidth < maxWidth ? fixedWidth : maxWidth;
-            //       double height = fixedHeight < maxHeight ? fixedHeight : maxHeight;
+                  // Determine the actual width and height to use
+                  double width = fixedWidth < maxWidth ? fixedWidth : maxWidth;
+                  double height = fixedHeight < maxHeight ? fixedHeight : maxHeight;
 
-            //       ui.platformViewRegistry.registerViewFactory(
-            //           viewID,
-            //           (int id) => html.IFrameElement()
-            //             ..width = MediaQuery.of(context).size.width.toString()
-            //             ..height = MediaQuery.of(context).size.height.toString()
-            //             ..src = 'assets/home/uvod.html'
-            //             ..style.border = 'none');
-            //       return ConstrainedBox(
-            //         constraints: BoxConstraints(
-            //           maxWidth: width,
-            //           maxHeight: height,
-            //         ),
-            //         child: HtmlElementView(
-            //           viewType: viewID,
-            //         ),
-            //         // InAppWebView(
-            //         //   initialFile: "assets/home/uvod.html",
-            //         // ),
-            //       );
-            //     },
-            //   ),
-            // ),
+                  ui.platformViewRegistry.registerViewFactory(
+                      viewID,
+                      (int id) => html.IFrameElement()
+                        ..width = MediaQuery.of(context).size.width.toString()
+                        ..height = MediaQuery.of(context).size.height.toString()
+                        ..src = 'assets/home/uvod.html'
+                        ..style.border = 'none');
+                  return ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: width,
+                      maxHeight: height,
+                    ),
+                    // child: HtmlElementView(
+                    //   viewType: viewID,
+                    // ),
+                    child: InAppWebView(
+                      initialFile: "assets/home/uvod.html",
+                    ),
+                  );
+                },
+              ),
+            ),
             LayoutBuilder(
               builder: (context, constraints) {
                 double maxWidth = MediaQuery.of(context).size.width * 0.8; // 80% of screen width
@@ -115,7 +117,7 @@ class HomePageDesktop extends StatelessWidget {
                         items: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21].map((i) {
                           return Builder(
                             builder: (BuildContext context) {
-                              return Container(child: Image.asset("assets/_assets/images/$i.jpg"));
+                              return Image.asset("assets/_assets/images/$i.jpg");
                             },
                           );
                         }).toList(),
@@ -123,6 +125,7 @@ class HomePageDesktop extends StatelessWidget {
                     ));
               },
             ),
+            const BottomMenu(),
           ],
         ),
       ),

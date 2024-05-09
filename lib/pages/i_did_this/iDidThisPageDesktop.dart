@@ -134,7 +134,7 @@ class _IDidThisPageDesktopState extends State<IDidThisPageDesktop> {
                                       children: [
                                         for (int i = 1; i <= 16; i++)
                                           Hero(
-                                            tag: 'image1',
+                                            tag: 'image$i',
                                             child: InkWell(
                                               onTap: () {
                                                 Navigator.of(context).push(
