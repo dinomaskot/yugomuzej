@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:yugomuzej/_config/app_languages.dart';
+import 'package:yugomuzej/_config/music.dart';
 import 'package:yugomuzej/_config/router.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 
@@ -20,14 +21,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => appLanguage,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => appLanguage),
+        ChangeNotifierProvider(create: (_) => MusicProvider()),
+      ],
       child: Consumer<AppLanguage>(
         builder: (context, model, child) {
           return MaterialApp.router(
             theme: ThemeData(scaffoldBackgroundColor: Colors.white, fontFamily: 'Arial'),
             routerConfig: router,
-            localizationsDelegates: [
+            localizationsDelegates: const [
               LocDelegate(),
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,

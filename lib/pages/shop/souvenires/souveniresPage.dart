@@ -11,9 +11,9 @@ class ShopSouveniresPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > Globals.switchWidth) {
-          return ShopSouveniresPageDesktop();
+          return const ShopSouveniresPageDesktop();
         } else {
-          return ShopSouveniresPageMobile();
+          return const ShopSouveniresPageMobile();
         }
       },
       // ),

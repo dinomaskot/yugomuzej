@@ -1,13 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:provider/provider.dart';
+import 'package:video_player/video_player.dart';
+import 'package:yugomuzej/_config/music.dart';
 import 'package:yugomuzej/widgets/bottomMenu.dart';
 
 import 'widgets/home_menu_widget.dart';
-import 'dart:html' as html;
-import 'dart:js' as js;
-import 'dart:ui_web' as ui;
 
 String viewID = "your-view-id";
 
@@ -24,72 +22,51 @@ class HomePageDesktop extends StatelessWidget {
             Center(
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  double maxWidth = MediaQuery.of(context).size.width * 0.8; // 80% of screen width
-                  double maxHeight = MediaQuery.of(context).size.height * 0.6; // 60% of screen height
+                  double maxWidth = MediaQuery.of(context).size.width * 0.8;
+                  double maxHeight = MediaQuery.of(context).size.height * 0.6;
 
-                  // Set fixed dimensions for InAppWebView
                   double fixedWidth = 700;
-                  // double fixedHeight = 400;
 
-                  // Determine the actual width and height to use
                   double width = fixedWidth < maxWidth ? fixedWidth : maxWidth;
-                  // double height = fixedHeight < maxHeight ? fixedHeight : maxHeight;
 
                   return ConstrainedBox(
                       constraints: BoxConstraints(
                         maxWidth: width,
-                        // maxHeight: height,
                       ),
-                      child: Container(margin: const EdgeInsets.all(2.5), child: HomeMenu()));
+                      child: Container(margin: const EdgeInsets.all(2.5), child: const HomeMenu()));
                 },
               ),
             ),
             Center(
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  double maxWidth = MediaQuery.of(context).size.width * 0.8; // 80% of screen width
-                  double maxHeight = MediaQuery.of(context).size.height * 0.6; // 60% of screen height
+                  double maxWidth = MediaQuery.of(context).size.width * 0.8;
+                  double maxHeight = MediaQuery.of(context).size.height * 0.6;
 
-                  // Set fixed dimensions for InAppWebView
                   double fixedWidth = 700;
                   double fixedHeight = 400;
 
-                  // Determine the actual width and height to use
                   double width = fixedWidth < maxWidth ? fixedWidth : maxWidth;
                   double height = fixedHeight < maxHeight ? fixedHeight : maxHeight;
 
-                  ui.platformViewRegistry.registerViewFactory(
-                      viewID,
-                      (int id) => html.IFrameElement()
-                        ..width = MediaQuery.of(context).size.width.toString()
-                        ..height = MediaQuery.of(context).size.height.toString()
-                        ..src = 'assets/home/uvod.html'
-                        ..style.border = 'none');
                   return ConstrainedBox(
                     constraints: BoxConstraints(
                       maxWidth: width,
                       maxHeight: height,
                     ),
-                    // child: HtmlElementView(
-                    //   viewType: viewID,
-                    // ),
-                    child: InAppWebView(
-                      initialFile: "assets/home/uvod.html",
-                    ),
+                    child: const _PlayerVideoAndPopPage(),
                   );
                 },
               ),
             ),
             LayoutBuilder(
               builder: (context, constraints) {
-                double maxWidth = MediaQuery.of(context).size.width * 0.8; // 80% of screen width
-                double maxHeight = MediaQuery.of(context).size.height * 0.6; // 60% of screen height
+                double maxWidth = MediaQuery.of(context).size.width * 0.8;
+                double maxHeight = MediaQuery.of(context).size.height * 0.6;
 
-                // Set fixed dimensions for InAppWebView
                 double fixedWidth = 700;
                 double fixedHeight = 400;
 
-                // Determine the actual width and height to use
                 double width = fixedWidth < maxWidth ? fixedWidth : maxWidth;
                 double height = fixedHeight < maxHeight ? fixedHeight : maxHeight;
 
@@ -127,6 +104,64 @@ class HomePageDesktop extends StatelessWidget {
             ),
             const BottomMenu(),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PlayerVideoAndPopPage extends StatefulWidget {
+  const _PlayerVideoAndPopPage();
+  @override
+  _PlayerVideoAndPopPageState createState() => _PlayerVideoAndPopPageState();
+}
+
+class _PlayerVideoAndPopPageState extends State<_PlayerVideoAndPopPage> {
+  late VideoPlayerController _videoPlayerController;
+  bool startedPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _videoPlayerController = VideoPlayerController.asset("assets/home/uvod.mp4");
+
+    _videoPlayerController.addListener(() {});
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _videoPlayerController
+        ..initialize().then((_) {
+          _videoPlayerController.setVolume(0);
+
+          _videoPlayerController.play();
+        });
+    });
+    final musicProvider = Provider.of<MusicProvider>(context, listen: false);
+    musicProvider.play();
+  }
+
+  @override
+  void dispose() {
+    _videoPlayerController.dispose();
+    super.dispose();
+  }
+
+  Future<bool> started() async {
+    return true;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Center(
+        child: FutureBuilder<bool>(
+          future: started(),
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            if (snapshot.data ?? false) {
+              return VideoPlayer(_videoPlayerController);
+            } else {
+              return const SizedBox(height: 50, width: 50, child: CircularProgressIndicator(color: Colors.black));
+            }
+          },
         ),
       ),
     );

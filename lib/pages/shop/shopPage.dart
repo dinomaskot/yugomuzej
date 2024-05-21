@@ -11,9 +11,9 @@ class ShopPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > Globals.switchWidth) {
-          return ShopPageDesktop();
+          return const ShopPageDesktop();
         } else {
-          return ShopPageMobile();
+          return const ShopPageMobile();
         }
       },
       // ),

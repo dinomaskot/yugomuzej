@@ -1,14 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yugomuzej/_config/globals.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 import 'package:yugomuzej/pages/home/widgets/home_menu_widget.dart';
 import 'package:yugomuzej/widgets/bottomCarusel.dart';
+import 'package:yugomuzej/widgets/bottomMenu.dart';
+import 'package:yugomuzej/widgets/customInkWell.dart';
 import 'package:yugomuzej/widgets/menu.dart';
 
 class ExibitionPageDesktop extends StatefulWidget {
@@ -90,7 +89,7 @@ class _ExibitionPageDesktopState extends State<ExibitionPageDesktop> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   // SizedBox(height: 20),
-                                  InkWell(
+                                  CustomInkWell(
                                     onTap: () => context.go("/exhibition/01"),
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -112,7 +111,7 @@ class _ExibitionPageDesktopState extends State<ExibitionPageDesktop> {
                                     ),
                                   ),
                                   SizedBox(height: 8),
-                                  InkWell(
+                                  CustomInkWell(
                                     onTap: () => context.go("/exhibition/02"),
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -133,7 +132,7 @@ class _ExibitionPageDesktopState extends State<ExibitionPageDesktop> {
                                     ),
                                   ),
                                   SizedBox(height: 8),
-                                  InkWell(
+                                  CustomInkWell(
                                     onTap: () => context.go("/exhibition/03"),
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -171,8 +170,10 @@ class _ExibitionPageDesktopState extends State<ExibitionPageDesktop> {
             ),
           ),
           BottomCarusel(
-            path: "assets/main_exibition",
+            path: "assets/exhibitions/menu",
+            numeberOfPictures: 21,
           ),
+          const BottomMenu(),
         ],
       ),
     );

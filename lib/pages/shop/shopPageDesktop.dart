@@ -4,6 +4,8 @@ import 'package:yugomuzej/_config/globals.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 import 'package:yugomuzej/pages/home/widgets/home_menu_widget.dart';
 import 'package:yugomuzej/widgets/bottomCarusel.dart';
+import 'package:yugomuzej/widgets/bottomMenu.dart';
+import 'package:yugomuzej/widgets/customInkWell.dart';
 import 'package:yugomuzej/widgets/menu.dart';
 
 class ShopPageDesktop extends StatefulWidget {
@@ -76,7 +78,7 @@ class _ShopPageDesktopState extends State<ShopPageDesktop> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  InkWell(
+                                  CustomInkWell(
                                     onTap: () => context.go("/shop/souvenires"),
                                     child: Padding(
                                       padding: const EdgeInsets.only(right: 20),
@@ -96,7 +98,7 @@ class _ShopPageDesktopState extends State<ShopPageDesktop> {
                                       ),
                                     ),
                                   ),
-                                  InkWell(
+                                  CustomInkWell(
                                     onTap: () => context.go("/shop/drawings"),
                                     child: Padding(
                                       padding: const EdgeInsets.only(right: 20),
@@ -131,8 +133,10 @@ class _ShopPageDesktopState extends State<ShopPageDesktop> {
             ),
           ),
           const BottomCarusel(
-            path: "assets/main_exibition",
+            path: "assets/shop/menu",
+            numeberOfPictures: 24,
           ),
+          const BottomMenu(),
         ],
       ),
     );

@@ -9,6 +9,7 @@ environment:
   sdk: ">=3.3.4 <4.0.0"
 
 dependencies:
+  audioplayers: ^6.0.0
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.6
   flutter:
@@ -21,6 +22,8 @@ dependencies:
   provider: ^6.1.2
   sized_context: ^1.0.0+4
   url_launcher: ^6.2.6
+  video_player: ^2.8.6
+  webview_flutter: ^4.7.0
 
 dev_dependencies:
   flutter_lints: ^3.0.0
@@ -31,21 +34,37 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/_assets/
     - assets/home/
-    - assets/home/images/
+    - assets/about/
+    - assets/about/menu/
     - assets/_assets/images/
     - assets/_assets/images/main_exhibition/
     - assets/main_exibition/
+    - assets/main_exibition/menu/
     - assets/exhibitions/
+    - assets/exhibitions/menu/
     - assets/exhibitions/01/
     - assets/exhibitions/02/
     - assets/exhibitions/03/
     - assets/i_did_this/
+    - assets/i_did_this/menu/
     - assets/souvenires/
+    - assets/souvenires/menu/
     - assets/author/
+    - assets/author/menu/
+    - assets/kontakt/menu/
+    - assets/video/
+    - assets/video/menu/
     - assets/shop/
+    - assets/shop/menu/
+    - assets/shop/menu/drawings/
     - assets/shop/drawings/
     - assets/shop/souvenires/
+    - assets/desktop/
+    - assets/desktop/menu/
+    - assets/desktop/pics/
+    - assets/webteam/menu/
     - locales/
 
   fonts:

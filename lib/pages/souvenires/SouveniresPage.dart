@@ -11,9 +11,9 @@ class SouveniresPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > Globals.switchWidth) {
-          return SouveniresPageDesktop();
+          return const SouveniresPageDesktop();
         } else {
-          return SouveniresPageMobile();
+          return const SouveniresPageMobile();
         }
       },
       // ),

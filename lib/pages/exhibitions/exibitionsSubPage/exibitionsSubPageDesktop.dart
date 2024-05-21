@@ -1,13 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:yugomuzej/_config/globals.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 import 'package:yugomuzej/pages/home/widgets/home_menu_widget.dart';
 import 'package:yugomuzej/widgets/bottomCarusel.dart';
+import 'package:yugomuzej/widgets/bottomMenu.dart';
+import 'package:yugomuzej/widgets/customInkWell.dart';
 import 'package:yugomuzej/widgets/menu.dart';
 
 class ExibitionSubPageDesktop extends StatefulWidget {
@@ -104,137 +102,161 @@ class _ExibitionSubPageDesktopState extends State<ExibitionSubPageDesktop> {
                             children: [
                               Hero(
                                 tag: 'image1',
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      HeroDialogRoute(
-                                        builder: (BuildContext context) {
-                                          return Center(
-                                            child: AlertDialog(
-                                              content: Hero(
-                                                tag: 'image1',
-                                                child: SizedBox(
-                                                  child: Image.asset("assets/exhibitions/${widget.id}/1.webp"),
-                                                  // child: Image.asset("assets/_assets/images/main_exhibition/$index.webp"),
+                                child: Card(
+                                  color: Colors.white,
+                                  elevation: 0,
+                                  shape: LinearBorder(),
+                                  margin: EdgeInsets.zero,
+                                  child: CustomInkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        HeroDialogRoute(
+                                          builder: (BuildContext context) {
+                                            return Center(
+                                              child: AlertDialog(
+                                                content: Hero(
+                                                  tag: 'image1',
+                                                  child: SizedBox(
+                                                    child: Image.asset("assets/exhibitions/${widget.id}/1.webp"),
+                                                    // child: Image.asset("assets/_assets/images/main_exhibition/$index.webp"),
+                                                  ),
                                                 ),
+                                                actions: <Widget>[
+                                                  IconButton(
+                                                    icon: Icon(Icons.close),
+                                                    onPressed: Navigator.of(context).pop,
+                                                  ),
+                                                ],
                                               ),
-                                              actions: <Widget>[
-                                                IconButton(
-                                                  icon: Icon(Icons.close),
-                                                  onPressed: Navigator.of(context).pop,
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  },
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Image.asset("assets/exhibitions/${widget.id}/1.webp"),
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    },
+                                    child: SizedBox(
+                                      width: 150,
+                                      child: Image.asset("assets/exhibitions/${widget.id}/1.webp"),
+                                    ),
                                   ),
                                 ),
                               ),
                               Hero(
                                 tag: 'image2',
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      HeroDialogRoute(
-                                        builder: (BuildContext context) {
-                                          return Center(
-                                            child: AlertDialog(
-                                              content: Hero(
-                                                tag: 'image2',
-                                                child: SizedBox(
-                                                  child: Image.asset("assets/exhibitions/${widget.id}/2.webp"),
-                                                  // child: Image.asset("assets/_assets/images/main_exhibition/$index.webp"),
+                                child: Card(
+                                  color: Colors.white,
+                                  elevation: 0,
+                                  shape: LinearBorder(),
+                                  margin: EdgeInsets.zero,
+                                  child: CustomInkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        HeroDialogRoute(
+                                          builder: (BuildContext context) {
+                                            return Center(
+                                              child: AlertDialog(
+                                                content: Hero(
+                                                  tag: 'image2',
+                                                  child: SizedBox(
+                                                    child: Image.asset("assets/exhibitions/${widget.id}/2.webp"),
+                                                    // child: Image.asset("assets/_assets/images/main_exhibition/$index.webp"),
+                                                  ),
                                                 ),
+                                                actions: <Widget>[
+                                                  IconButton(
+                                                    icon: Icon(Icons.close),
+                                                    onPressed: Navigator.of(context).pop,
+                                                  ),
+                                                ],
                                               ),
-                                              actions: <Widget>[
-                                                IconButton(
-                                                  icon: Icon(Icons.close),
-                                                  onPressed: Navigator.of(context).pop,
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  },
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Image.asset("assets/exhibitions/${widget.id}/2.webp"),
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    },
+                                    child: SizedBox(
+                                      width: 150,
+                                      child: Image.asset("assets/exhibitions/${widget.id}/2.webp"),
+                                    ),
                                   ),
                                 ),
                               ),
                               Hero(
                                 tag: 'image3',
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      HeroDialogRoute(
-                                        builder: (BuildContext context) {
-                                          return Center(
-                                            child: AlertDialog(
-                                              content: Hero(
-                                                tag: 'image3',
-                                                child: SizedBox(
-                                                  child: Image.asset("assets/exhibitions/${widget.id}/3.webp"),
-                                                  // child: Image.asset("assets/_assets/images/main_exhibition/$index.webp"),
+                                child: Card(
+                                  color: Colors.white,
+                                  elevation: 0,
+                                  shape: LinearBorder(),
+                                  margin: EdgeInsets.zero,
+                                  child: CustomInkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        HeroDialogRoute(
+                                          builder: (BuildContext context) {
+                                            return Center(
+                                              child: AlertDialog(
+                                                content: Hero(
+                                                  tag: 'image3',
+                                                  child: SizedBox(
+                                                    child: Image.asset("assets/exhibitions/${widget.id}/3.webp"),
+                                                    // child: Image.asset("assets/_assets/images/main_exhibition/$index.webp"),
+                                                  ),
                                                 ),
+                                                actions: <Widget>[
+                                                  IconButton(
+                                                    icon: Icon(Icons.close),
+                                                    onPressed: Navigator.of(context).pop,
+                                                  ),
+                                                ],
                                               ),
-                                              actions: <Widget>[
-                                                IconButton(
-                                                  icon: Icon(Icons.close),
-                                                  onPressed: Navigator.of(context).pop,
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  },
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Image.asset("assets/exhibitions/${widget.id}/3.webp"),
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    },
+                                    child: SizedBox(
+                                      width: 150,
+                                      child: Image.asset("assets/exhibitions/${widget.id}/3.webp"),
+                                    ),
                                   ),
                                 ),
                               ),
                               Hero(
                                 tag: 'image4',
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      HeroDialogRoute(
-                                        builder: (BuildContext context) {
-                                          return Center(
-                                            child: AlertDialog(
-                                              content: Hero(
-                                                tag: 'image4',
-                                                child: SizedBox(
-                                                  child: Image.asset("assets/exhibitions/${widget.id}/4.webp"),
-                                                  // child: Image.asset("assets/_assets/images/main_exhibition/$index.webp"),
+                                child: Card(
+                                  color: Colors.white,
+                                  elevation: 0,
+                                  shape: LinearBorder(),
+                                  margin: EdgeInsets.zero,
+                                  child: CustomInkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        HeroDialogRoute(
+                                          builder: (BuildContext context) {
+                                            return Center(
+                                              child: AlertDialog(
+                                                content: Hero(
+                                                  tag: 'image4',
+                                                  child: SizedBox(
+                                                    child: Image.asset("assets/exhibitions/${widget.id}/4.webp"),
+                                                    // child: Image.asset("assets/_assets/images/main_exhibition/$index.webp"),
+                                                  ),
                                                 ),
+                                                actions: <Widget>[
+                                                  IconButton(
+                                                    icon: Icon(Icons.close),
+                                                    onPressed: Navigator.of(context).pop,
+                                                  ),
+                                                ],
                                               ),
-                                              actions: <Widget>[
-                                                IconButton(
-                                                  icon: Icon(Icons.close),
-                                                  onPressed: Navigator.of(context).pop,
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  },
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Image.asset("assets/exhibitions/${widget.id}/4.webp"),
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    },
+                                    child: SizedBox(
+                                      width: 150,
+                                      child: Image.asset("assets/exhibitions/${widget.id}/4.webp"),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -257,8 +279,10 @@ class _ExibitionSubPageDesktopState extends State<ExibitionSubPageDesktop> {
             ),
           ),
           BottomCarusel(
-            path: "assets/main_exibition",
+            path: "assets/exhibitions/menu",
+            numeberOfPictures: 21,
           ),
+          const BottomMenu(),
         ],
       ),
     );

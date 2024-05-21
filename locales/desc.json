@@ -316,5 +316,23 @@
     "awardsDesc": "",
     "museumsDesc": "",
     "interviewDesc": ""
+  },
+  "desktop": {
+    "pictures": "",
+    "screensaver": "",
+    "icons": "",
+    "menu": ""
+  },
+  "contact": {
+    "menu": ""
+  },
+  "about": {
+    "menu": "",
+    "about": ""
+  },
+  "webteam": {
+    "desc": "",
+    "menu": "",
+    "puzzle": ""
   }
 }

@@ -1,12 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:yugomuzej/_config/globals.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 import 'package:yugomuzej/pages/home/widgets/home_menu_widget.dart';
 import 'package:yugomuzej/widgets/bottomCarusel.dart';
+import 'package:yugomuzej/widgets/bottomMenu.dart';
+import 'package:yugomuzej/widgets/customInkWell.dart';
 import 'package:yugomuzej/widgets/menu.dart';
 
 class IDidThisPageDesktop extends StatefulWidget {
@@ -20,6 +19,8 @@ class _IDidThisPageDesktopState extends State<IDidThisPageDesktop> {
   int index = 1;
   @override
   Widget build(BuildContext context) {
+    final scrollControllerText = ScrollController();
+    final scrollControllerImages = ScrollController();
     final loc = Localizations.of<LocaleBase>(context, LocaleBase)!;
     return Scaffold(
       body: Column(
@@ -89,8 +90,10 @@ class _IDidThisPageDesktopState extends State<IDidThisPageDesktop> {
                                 width: 420,
                                 height: 311,
                                 child: Scrollbar(
+                                  controller: scrollControllerText,
                                   thumbVisibility: true,
                                   child: SingleChildScrollView(
+                                    controller: scrollControllerText,
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
@@ -127,42 +130,50 @@ class _IDidThisPageDesktopState extends State<IDidThisPageDesktop> {
                                 width: 200,
                                 height: 313,
                                 child: Scrollbar(
+                                  controller: scrollControllerImages,
                                   thumbVisibility: true,
                                   child: SingleChildScrollView(
+                                    controller: scrollControllerImages,
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         for (int i = 1; i <= 16; i++)
                                           Hero(
                                             tag: 'image$i',
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.of(context).push(
-                                                  HeroDialogRoute(
-                                                    builder: (BuildContext context) {
-                                                      return Center(
-                                                        child: AlertDialog(
-                                                          content: Hero(
-                                                            tag: 'image$i',
-                                                            child: SizedBox(
-                                                              child: Image.asset("assets/i_did_this/$i.webp"),
+                                            child: Card(
+                                              color: Colors.white,
+                                              elevation: 0,
+                                              shape: LinearBorder(),
+                                              margin: EdgeInsets.zero,
+                                              child: CustomInkWell(
+                                                onTap: () {
+                                                  Navigator.of(context).push(
+                                                    HeroDialogRoute(
+                                                      builder: (BuildContext context) {
+                                                        return Center(
+                                                          child: AlertDialog(
+                                                            content: Hero(
+                                                              tag: 'image$i',
+                                                              child: SizedBox(
+                                                                child: Image.asset("assets/i_did_this/$i.webp"),
+                                                              ),
                                                             ),
+                                                            actions: <Widget>[
+                                                              IconButton(
+                                                                icon: Icon(Icons.close),
+                                                                onPressed: Navigator.of(context).pop,
+                                                              ),
+                                                            ],
                                                           ),
-                                                          actions: <Widget>[
-                                                            IconButton(
-                                                              icon: Icon(Icons.close),
-                                                              onPressed: Navigator.of(context).pop,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      );
-                                                    },
-                                                  ),
-                                                );
-                                              },
-                                              child: Container(
-                                                padding: EdgeInsets.fromLTRB(0, 10, 15, 0),
-                                                child: Image.asset("assets/i_did_this/$i.webp"),
+                                                        );
+                                                      },
+                                                    ),
+                                                  );
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.fromLTRB(0, 10, 15, 0),
+                                                  child: Image.asset("assets/i_did_this/$i.webp"),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -183,8 +194,10 @@ class _IDidThisPageDesktopState extends State<IDidThisPageDesktop> {
             ),
           ),
           BottomCarusel(
-            path: "assets/main_exibition",
+            path: "assets/i_did_this/menu",
+            numeberOfPictures: 25,
           ),
+          const BottomMenu(),
         ],
       ),
     );

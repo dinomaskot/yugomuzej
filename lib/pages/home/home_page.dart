@@ -11,9 +11,9 @@ class HomePage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > Globals.switchWidth) {
-          return HomePageDesktop();
+          return const HomePageDesktop();
         } else {
-          return HomePageMobile();
+          return const HomePageMobile();
         }
       },
       // ),

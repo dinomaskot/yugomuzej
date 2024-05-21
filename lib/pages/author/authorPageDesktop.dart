@@ -2,13 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:yugomuzej/_config/globals.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 import 'package:yugomuzej/pages/home/widgets/home_menu_widget.dart';
 import 'package:yugomuzej/widgets/bottomCarusel.dart';
+import 'package:yugomuzej/widgets/bottomMenu.dart';
+import 'package:yugomuzej/widgets/customInkWell.dart';
 import 'package:yugomuzej/widgets/menu.dart';
 
 class AuthorPageDesktop extends StatefulWidget {
@@ -84,7 +83,7 @@ class _AuthorPageDesktopState extends State<AuthorPageDesktop> {
 
                 double width = fixedWidth < maxWidth ? fixedWidth : maxWidth;
                 double height = fixedHeight < maxHeight ? fixedHeight : maxHeight;
-
+                final scrollController = ScrollController();
                 return ConstrainedBox(
                   constraints: BoxConstraints(
                     maxWidth: width,
@@ -106,70 +105,70 @@ class _AuthorPageDesktopState extends State<AuthorPageDesktop> {
                         Container(
                           // width: 700,
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Expanded(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  flex: 3,
-                                  // width: 420,
-                                  // height: 270,
-                                  child: SizedBox(
-                                    height: 270,
-                                    child: Scrollbar(
-                                      thumbVisibility: true,
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            currentIndex == 0 ? Text(loc.author.name, style: TextStyle(fontWeight: FontWeight.bold)) : SizedBox(),
-                                            SizedBox(height: 10),
-                                            currentIndex < 6
-                                                ? Text(
-                                                    loc.author.getByKey('${page}Desc'),
-                                                    style: TextStyle(fontSize: 12),
-                                                  )
-                                                : HtmlWidget(loc.author.getByKey('${page}Desc')),
-                                            currentIndex == 0
-                                                ? Row(
-                                                    children: [
-                                                      Text("E-mail: ", style: const TextStyle(fontSize: 12)),
-                                                      InkWell(
-                                                        onTap: () => launchUrlString("mailto:${loc.author.email}"),
-                                                        child: Text(
-                                                          loc.author.email,
-                                                          style: const TextStyle(fontSize: 12),
-                                                        ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                // width: 420,
+                                // height: 270,
+                                child: SizedBox(
+                                  height: 270,
+                                  child: Scrollbar(
+                                    controller: scrollController,
+                                    thumbVisibility: true,
+                                    child: SingleChildScrollView(
+                                      controller: scrollController,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          currentIndex == 0 ? Text(loc.author.name, style: TextStyle(fontWeight: FontWeight.bold)) : SizedBox(),
+                                          SizedBox(height: 10),
+                                          currentIndex < 6
+                                              ? Text(
+                                                  loc.author.getByKey('${page}Desc'),
+                                                  style: TextStyle(fontSize: 12),
+                                                )
+                                              : HtmlWidget(loc.author.getByKey('${page}Desc')),
+                                          currentIndex == 0
+                                              ? Row(
+                                                  children: [
+                                                    Text("E-mail: ", style: const TextStyle(fontSize: 12)),
+                                                    CustomInkWell(
+                                                      onTap: () => launchUrlString("mailto:${loc.author.email}"),
+                                                      child: Text(
+                                                        loc.author.email,
+                                                        style: const TextStyle(fontSize: 12),
                                                       ),
-                                                    ],
-                                                  )
-                                                : SizedBox(),
-                                            // Text(
-                                            //   loc.ididthis.title,
-                                            //   // style: TextStyle(fontSize: 16),
-                                            // ),
-                                          ],
-                                        ),
+                                                    ),
+                                                  ],
+                                                )
+                                              : SizedBox(),
+                                          // Text(
+                                          //   loc.ididthis.title,
+                                          //   // style: TextStyle(fontSize: 16),
+                                          // ),
+                                        ],
                                       ),
                                     ),
                                   ),
                                 ),
-                                currentIndex < 6
-                                    ? Expanded(
-                                        flex: 2,
-                                        // height: 290,
-                                        // width: 270,
-                                        child: Image.asset(
-                                          height: 270,
-                                          alignment: Alignment.centerRight,
-                                          "assets/author/$currentIndex.webp",
-                                          fit: BoxFit.contain,
-                                        ),
-                                      )
-                                    : SizedBox(),
-                              ],
-                            ),
+                              ),
+                              currentIndex < 6
+                                  ? Expanded(
+                                      flex: 2,
+                                      // height: 290,
+                                      // width: 270,
+                                      child: Image.asset(
+                                        height: 270,
+                                        alignment: Alignment.centerRight,
+                                        "assets/author/$currentIndex.webp",
+                                        fit: BoxFit.contain,
+                                      ),
+                                    )
+                                  : SizedBox(),
+                            ],
                           ),
                         ),
                         const Spacer(),
@@ -185,15 +184,21 @@ class _AuthorPageDesktopState extends State<AuthorPageDesktop> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              InkWell(child: Text(loc.author.exhibitions, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 1)),
-                              InkWell(child: Text(loc.author.books, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 2)),
-                              InkWell(child: Text(loc.author.workshops, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 3)),
-                              InkWell(child: Text(loc.author.awards, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 4)),
-                              InkWell(child: Text(loc.author.museums, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 5)),
-                              InkWell(child: Text(loc.author.interview, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 6)),
+                              CustomInkWell(
+                                  child: Text(loc.author.exhibitions, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 1)),
+                              CustomInkWell(child: Text(loc.author.books, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 2)),
+                              CustomInkWell(
+                                  child: Text(loc.author.workshops, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 3)),
+                              CustomInkWell(
+                                  child: Text(loc.author.awards, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 4)),
+                              CustomInkWell(
+                                  child: Text(loc.author.museums, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 5)),
+                              CustomInkWell(
+                                  child: Text(loc.author.interview, style: const TextStyle(fontSize: 11)), onTap: () => setState(() => currentIndex = 6)),
                             ],
                           ),
                         ),
+
                         // const Spacer(),
                       ],
                     ),
@@ -203,8 +208,10 @@ class _AuthorPageDesktopState extends State<AuthorPageDesktop> {
             ),
           ),
           const BottomCarusel(
-            path: "assets/main_exibition",
+            path: "assets/author/menu", //10-22
+            numeberOfPictures: 22,
           ),
+          const BottomMenu(),
         ],
       ),
     );

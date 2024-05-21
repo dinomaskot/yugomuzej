@@ -11,9 +11,9 @@ class IDidThisPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > Globals.switchWidth) {
-          return IDidThisPageDesktop();
+          return const IDidThisPageDesktop();
         } else {
-          return IDidThisPageMobile();
+          return const IDidThisPageMobile();
         }
       },
       // ),

@@ -16,7 +16,7 @@ class ExibitionSubPage extends StatelessWidget {
             id: id,
           );
         } else {
-          return ExibitionSubPageMobile();
+          return const ExibitionSubPageMobile();
         }
       },
       // ),

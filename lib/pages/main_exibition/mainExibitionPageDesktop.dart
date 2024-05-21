@@ -1,12 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 import 'package:yugomuzej/pages/home/widgets/home_menu_widget.dart';
 import 'package:yugomuzej/widgets/bottomCarusel.dart';
+import 'package:yugomuzej/widgets/bottomMenu.dart';
+import 'package:yugomuzej/widgets/customInkWell.dart';
 import 'package:yugomuzej/widgets/menu.dart';
 
 class MainExibitionPageDesktop extends StatefulWidget {
@@ -87,7 +86,7 @@ class _MainExibitionPageDesktopState extends State<MainExibitionPageDesktop> {
                               for (int i = 0; i < 52; i++)
                                 Padding(
                                   padding: const EdgeInsets.all(1.0),
-                                  child: InkWell(
+                                  child: CustomInkWell(
                                     child: Container(
                                       margin: EdgeInsets.zero,
                                       height: 11,
@@ -161,7 +160,7 @@ class _MainExibitionPageDesktopState extends State<MainExibitionPageDesktop> {
                                       crossAxisAlignment: CrossAxisAlignment.end,
                                       children: [
                                         index > 1
-                                            ? InkWell(
+                                            ? CustomInkWell(
                                                 onTap: () => setState(() {
                                                   index = index - 1;
                                                 }),
@@ -177,7 +176,7 @@ class _MainExibitionPageDesktopState extends State<MainExibitionPageDesktop> {
 
                                         // Spacer(),
                                         index < 52
-                                            ? InkWell(
+                                            ? CustomInkWell(
                                                 onTap: () => setState(() {
                                                   index = index + 1;
                                                 }),
@@ -195,35 +194,41 @@ class _MainExibitionPageDesktopState extends State<MainExibitionPageDesktop> {
                                   ),
                                   Hero(
                                     tag: 'image',
-                                    child: InkWell(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                          HeroDialogRoute(
-                                            builder: (BuildContext context) {
-                                              return Center(
-                                                child: AlertDialog(
-                                                  content: Hero(
-                                                    tag: 'image',
-                                                    child: SizedBox(
-                                                      child: Image.asset("assets/_assets/images/main_exhibition/$index.webp"),
+                                    child: Card(
+                                      color: Colors.white,
+                                      elevation: 0,
+                                      shape: LinearBorder(),
+                                      margin: EdgeInsets.zero,
+                                      child: CustomInkWell(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                            HeroDialogRoute(
+                                              builder: (BuildContext context) {
+                                                return Center(
+                                                  child: AlertDialog(
+                                                    content: Hero(
+                                                      tag: 'image',
+                                                      child: SizedBox(
+                                                        child: Image.asset("assets/_assets/images/main_exhibition/$index.webp"),
+                                                      ),
                                                     ),
+                                                    actions: <Widget>[
+                                                      IconButton(
+                                                        icon: Icon(Icons.close),
+                                                        onPressed: Navigator.of(context).pop,
+                                                      ),
+                                                    ],
                                                   ),
-                                                  actions: <Widget>[
-                                                    IconButton(
-                                                      icon: Icon(Icons.close),
-                                                      onPressed: Navigator.of(context).pop,
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
+                                                );
+                                              },
+                                            ),
+                                          );
+                                        },
+                                        child: SizedBox(
+                                          width: 200,
+                                          child: Image.asset(
+                                            "assets/_assets/images/main_exhibition/$index.webp",
                                           ),
-                                        );
-                                      },
-                                      child: SizedBox(
-                                        width: 200,
-                                        child: Image.asset(
-                                          "assets/_assets/images/main_exhibition/$index.webp",
                                         ),
                                       ),
                                     ),
@@ -241,8 +246,10 @@ class _MainExibitionPageDesktopState extends State<MainExibitionPageDesktop> {
             ),
           ),
           BottomCarusel(
-            path: "assets/main_exibition",
+            path: "assets/main_exibition/menu",
+            numeberOfPictures: 21,
           ),
+          const BottomMenu(),
         ],
       ),
     );

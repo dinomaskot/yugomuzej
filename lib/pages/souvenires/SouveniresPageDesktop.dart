@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:yugomuzej/_config/globals.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 import 'package:yugomuzej/pages/home/widgets/home_menu_widget.dart';
 import 'package:yugomuzej/widgets/bottomCarusel.dart';
+import 'package:yugomuzej/widgets/bottomMenu.dart';
+import 'package:yugomuzej/widgets/customInkWell.dart';
 import 'package:yugomuzej/widgets/menu.dart';
 
 class SouveniresPageDesktop extends StatefulWidget {
@@ -18,6 +18,7 @@ class SouveniresPageDesktop extends StatefulWidget {
 
 class _SouveniresPageDesktopState extends State<SouveniresPageDesktop> {
   int index = 1;
+  final scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     final loc = Localizations.of<LocaleBase>(context, LocaleBase)!;
@@ -84,8 +85,10 @@ class _SouveniresPageDesktopState extends State<SouveniresPageDesktop> {
                           width: 600,
                           height: 313,
                           child: Scrollbar(
+                            controller: scrollController,
                             thumbVisibility: true,
                             child: SingleChildScrollView(
+                              controller: scrollController,
                               child: SizedBox(
                                 // width: 100,
                                 child: Column(
@@ -575,8 +578,10 @@ class _SouveniresPageDesktopState extends State<SouveniresPageDesktop> {
             ),
           ),
           BottomCarusel(
-            path: "assets/main_exibition",
+            path: "assets/souvenires/menu",
+            numeberOfPictures: 22,
           ),
+          const BottomMenu(),
         ],
       ),
     );
@@ -594,37 +599,43 @@ class PopupImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: 'image1',
-      child: InkWell(
-        onTap: () {
-          Navigator.of(context).push(
-            HeroDialogRoute(
-              builder: (BuildContext context) {
-                return Center(
-                  child: AlertDialog(
-                    content: Hero(
-                      tag: 'image$i',
-                      child: SizedBox(
-                        child: Image.asset("assets/souvenires/$i.webp"),
+      tag: 'image$i',
+      child: Card(
+        color: Colors.white,
+        elevation: 0,
+        shape: LinearBorder(),
+        margin: EdgeInsets.zero,
+        child: CustomInkWell(
+          onTap: () {
+            Navigator.of(context).push(
+              HeroDialogRoute(
+                builder: (BuildContext context) {
+                  return Center(
+                    child: AlertDialog(
+                      content: Hero(
+                        tag: 'image$i',
+                        child: SizedBox(
+                          child: Image.asset("assets/souvenires/$i.webp"),
+                        ),
                       ),
+                      actions: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.close),
+                          onPressed: Navigator.of(context).pop,
+                        ),
+                      ],
                     ),
-                    actions: <Widget>[
-                      IconButton(
-                        icon: Icon(Icons.close),
-                        onPressed: Navigator.of(context).pop,
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          );
-        },
-        child: Container(
-          width: 150,
-          height: 150,
-          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-          child: Image.asset("assets/souvenires/$i.webp"),
+                  );
+                },
+              ),
+            );
+          },
+          child: Container(
+            width: 150,
+            height: 150,
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+            child: Image.asset("assets/souvenires/$i.webp"),
+          ),
         ),
       ),
     );

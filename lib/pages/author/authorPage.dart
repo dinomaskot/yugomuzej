@@ -11,9 +11,9 @@ class AuthorPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > Globals.switchWidth) {
-          return AuthorPageDesktop();
+          return const AuthorPageDesktop();
         } else {
-          return AuthorPageMobile();
+          return const AuthorPageMobile();
         }
       },
       // ),

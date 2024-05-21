@@ -11,6 +11,16 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ]
+      
+    ],
+    "headers": [ {
+      "source" : "assets/home/**",
+      "headers" : [ {
+        "key": "Content-Security-Policy",
+        "value": "sandbox allow-scripts allow-same-origin allow-popups allow-forms"
+          
+      } ]
+    } ]
   }
+  
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 import 'package:yugomuzej/pages/home/widgets/home_menu_widget.dart';
 import 'package:yugomuzej/widgets/bottomCarusel.dart';
+import 'package:yugomuzej/widgets/bottomMenu.dart';
+import 'package:yugomuzej/widgets/customInkWell.dart';
 import 'package:yugomuzej/widgets/menu.dart';
 
 class ShopDrawingsPageDesktop extends StatefulWidget {
@@ -81,7 +83,7 @@ class _ShopDrawingsPageDesktopState extends State<ShopDrawingsPageDesktop> {
                           back: true,
                         ),
                         const Spacer(),
-                        Container(
+                        SizedBox(
                           height: 313,
                           child: Scrollbar(
                             controller: scrollController,
@@ -89,7 +91,7 @@ class _ShopDrawingsPageDesktopState extends State<ShopDrawingsPageDesktop> {
                             child: GridView(
                               padding: const EdgeInsets.symmetric(horizontal: 20.0),
                               controller: scrollController,
-                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 3,
                                 crossAxisSpacing: 10,
                                 childAspectRatio: 16 / 13,
@@ -98,34 +100,40 @@ class _ShopDrawingsPageDesktopState extends State<ShopDrawingsPageDesktop> {
                                 for (int i = 1; i <= 48; i++)
                                   Hero(
                                     tag: 'image$i',
-                                    child: InkWell(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                          HeroDialogRoute(
-                                            builder: (BuildContext context) {
-                                              return Center(
-                                                child: AlertDialog(
-                                                  content: Hero(
-                                                    tag: 'image$i',
-                                                    child: SizedBox(
-                                                      child: Image.asset("assets/shop/drawings/$i.webp"),
+                                    child: Card(
+                                      color: Colors.white,
+                                      elevation: 0,
+                                      shape: LinearBorder(),
+                                      margin: EdgeInsets.zero,
+                                      child: CustomInkWell(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                            HeroDialogRoute(
+                                              builder: (BuildContext context) {
+                                                return Center(
+                                                  child: AlertDialog(
+                                                    content: Hero(
+                                                      tag: 'image$i',
+                                                      child: SizedBox(
+                                                        child: Image.asset("assets/shop/drawings/$i.webp"),
+                                                      ),
                                                     ),
+                                                    actions: <Widget>[
+                                                      IconButton(
+                                                        icon: const Icon(Icons.close),
+                                                        onPressed: Navigator.of(context).pop,
+                                                      ),
+                                                    ],
                                                   ),
-                                                  actions: <Widget>[
-                                                    IconButton(
-                                                      icon: const Icon(Icons.close),
-                                                      onPressed: Navigator.of(context).pop,
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        );
-                                      },
-                                      child: Container(
-                                        // padding: const EdgeInsets.fromLTRB(0, 10, 15, 0),
-                                        child: Image.asset("assets/shop/drawings/$i.webp"),
+                                                );
+                                              },
+                                            ),
+                                          );
+                                        },
+                                        child: Container(
+                                          // padding: const EdgeInsets.fromLTRB(0, 10, 15, 0),
+                                          child: Image.asset("assets/shop/drawings/$i.webp"),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -142,8 +150,10 @@ class _ShopDrawingsPageDesktopState extends State<ShopDrawingsPageDesktop> {
             ),
           ),
           const BottomCarusel(
-            path: "assets/main_exibition",
+            path: "assets/shop/menu/drawings",
+            numeberOfPictures: 21,
           ),
+          const BottomMenu(),
         ],
       ),
     );

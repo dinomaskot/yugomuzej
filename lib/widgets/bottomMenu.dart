@@ -1,9 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yugomuzej/_config/app_languages.dart';
-import 'package:yugomuzej/generated/locale_base.dart';
-import 'package:yugomuzej/main.dart';
+import 'package:yugomuzej/_config/music.dart';
+import 'package:yugomuzej/widgets/customInkWell.dart';
 
 class BottomMenu extends StatefulWidget {
   const BottomMenu({
@@ -53,7 +52,10 @@ class _BottomMenuState extends State<BottomMenu> {
                     children: [
                       IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () {},
+                        onPressed: () {
+                          final musicProvider = Provider.of<MusicProvider>(context, listen: false);
+                          musicProvider.play();
+                        },
                         icon: const Icon(
                           Icons.play_arrow,
                           size: 20,
@@ -61,7 +63,10 @@ class _BottomMenuState extends State<BottomMenu> {
                       ),
                       IconButton(
                           padding: EdgeInsets.zero,
-                          onPressed: () {},
+                          onPressed: () {
+                            final musicProvider = Provider.of<MusicProvider>(context, listen: false);
+                            musicProvider.stop();
+                          },
                           icon: const Icon(
                             Icons.stop,
                             size: 20,
@@ -73,21 +78,21 @@ class _BottomMenuState extends State<BottomMenu> {
                   padding: const EdgeInsets.only(right: 20),
                   child: Row(
                     children: [
-                      InkWell(
+                      CustomInkWell(
                         child: Text("en", style: appLanguage.lang == 'en' ? const TextStyle(fontWeight: FontWeight.w800) : null),
                         onTap: () => setState(() {
                           appLanguage.changeLanguage(const Locale("en"));
                         }),
                       ),
                       const SizedBox(width: 10),
-                      InkWell(
+                      CustomInkWell(
                         child: Text("fr", style: appLanguage.lang == 'fr' ? const TextStyle(fontWeight: FontWeight.w800) : null),
                         onTap: () => setState(() {
                           appLanguage.changeLanguage(const Locale("fr"));
                         }),
                       ),
                       const SizedBox(width: 10),
-                      InkWell(
+                      CustomInkWell(
                         child: Text("sr", style: appLanguage.lang == 'sr' ? const TextStyle(fontWeight: FontWeight.w800) : null),
                         onTap: () => setState(() {
                           appLanguage.changeLanguage(const Locale("sr"));

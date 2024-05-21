@@ -31,6 +31,14 @@ class LocaleBase {
   Localeshop get shop => _shop;
   late Localeauthor _author;
   Localeauthor get author => _author;
+  late Localedesktop _desktop;
+  Localedesktop get desktop => _desktop;
+  late Localecontact _contact;
+  Localecontact get contact => _contact;
+  late Localeabout _about;
+  Localeabout get about => _about;
+  late Localewebteam _webteam;
+  Localewebteam get webteam => _webteam;
 
   void initAll() {
     _home = Localehome(Map<String, String>.from(_data['home']));
@@ -40,6 +48,10 @@ class LocaleBase {
     _souvenires = Localesouvenires(Map<String, String>.from(_data['souvenires']));
     _shop = Localeshop(Map<String, String>.from(_data['shop']));
     _author = Localeauthor(Map<String, String>.from(_data['author']));
+    _desktop = Localedesktop(Map<String, String>.from(_data['desktop']));
+    _contact = Localecontact(Map<String, String>.from(_data['contact']));
+    _about = Localeabout(Map<String, String>.from(_data['about']));
+    _webteam = Localewebteam(Map<String, String>.from(_data['webteam']));
   }
 }
 
@@ -415,5 +427,55 @@ class Localeauthor {
   String get awardsDesc => _data["awardsDesc"]!;
   String get museumsDesc => _data["museumsDesc"]!;
   String get interviewDesc => _data["interviewDesc"]!;
+}
+
+class Localedesktop {
+  late final Map<String, String> _data;
+  Localedesktop(this._data);
+
+  String getByKey(String key) {
+    return _data[key]!;
+  }
+
+  String get pictures => _data["pictures"]!;
+  String get screensaver => _data["screensaver"]!;
+  String get icons => _data["icons"]!;
+  String get menu => _data["menu"]!;
+}
+
+class Localecontact {
+  late final Map<String, String> _data;
+  Localecontact(this._data);
+
+  String getByKey(String key) {
+    return _data[key]!;
+  }
+
+  String get menu => _data["menu"]!;
+}
+
+class Localeabout {
+  late final Map<String, String> _data;
+  Localeabout(this._data);
+
+  String getByKey(String key) {
+    return _data[key]!;
+  }
+
+  String get menu => _data["menu"]!;
+  String get about => _data["about"]!;
+}
+
+class Localewebteam {
+  late final Map<String, String> _data;
+  Localewebteam(this._data);
+
+  String getByKey(String key) {
+    return _data[key]!;
+  }
+
+  String get desc => _data["desc"]!;
+  String get menu => _data["menu"]!;
+  String get puzzle => _data["puzzle"]!;
 }
 

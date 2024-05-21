@@ -11,9 +11,9 @@ class ExibitionPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > Globals.switchWidth) {
-          return ExibitionPageDesktop();
+          return const ExibitionPageDesktop();
         } else {
-          return ExibitionPageMobile();
+          return const ExibitionPageMobile();
         }
       },
       // ),

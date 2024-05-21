@@ -1,13 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:yugomuzej/_config/globals.dart';
 import 'package:yugomuzej/generated/locale_base.dart';
 import 'package:yugomuzej/pages/home/widgets/home_menu_widget.dart';
 import 'package:yugomuzej/widgets/bottomCarusel.dart';
+import 'package:yugomuzej/widgets/bottomMenu.dart';
+import 'package:yugomuzej/widgets/customInkWell.dart';
 import 'package:yugomuzej/widgets/menu.dart';
 
 class ShopSouveniresPageDesktop extends StatefulWidget {
@@ -123,7 +122,7 @@ class _ShopSouveniresPageDesktopState extends State<ShopSouveniresPageDesktop> {
                                             loc.shop.s2,
                                             style: const TextStyle(fontSize: 12),
                                           ),
-                                          InkWell(
+                                          CustomInkWell(
                                             onTap: () => launchUrlString("https://${loc.shop.kbclink}"),
                                             child: Text(
                                               loc.shop.kbclink,
@@ -145,7 +144,7 @@ class _ShopSouveniresPageDesktopState extends State<ShopSouveniresPageDesktop> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         currentIndex > 0
-                                            ? InkWell(
+                                            ? CustomInkWell(
                                                 onTap: () => pageController.previousPage(duration: Duration(milliseconds: 500), curve: Curves.linear),
                                                 child: Padding(
                                                   padding: const EdgeInsets.fromLTRB(10, 5, 0, 3),
@@ -160,7 +159,7 @@ class _ShopSouveniresPageDesktopState extends State<ShopSouveniresPageDesktop> {
                                           style: const TextStyle(fontSize: 12),
                                         ),
                                         currentIndex < 3
-                                            ? InkWell(
+                                            ? CustomInkWell(
                                                 onTap: () => pageController.nextPage(duration: Duration(milliseconds: 500), curve: Curves.linear),
                                                 child: Padding(
                                                   padding: const EdgeInsets.fromLTRB(10, 5, 0, 3),
@@ -200,8 +199,10 @@ class _ShopSouveniresPageDesktopState extends State<ShopSouveniresPageDesktop> {
             ),
           ),
           const BottomCarusel(
-            path: "assets/main_exibition",
+            path: "assets/shop/menu",
+            numeberOfPictures: 24,
           ),
+          const BottomMenu(),
         ],
       ),
     );

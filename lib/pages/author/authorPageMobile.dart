@@ -1,48 +1,208 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+// ignore_for_file: prefer_const_constructors
 
-class AuthorPageMobile extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:yugomuzej/generated/locale_base.dart';
+import 'package:yugomuzej/pages/home/widgets/home_menu_widget.dart';
+import 'package:yugomuzej/widgets/bottomCarusel.dart';
+import 'package:yugomuzej/widgets/bottomMenu.dart';
+import 'package:yugomuzej/widgets/customInkWell.dart';
+import 'package:yugomuzej/widgets/menu.dart';
+
+class AuthorPageMobile extends StatefulWidget {
+  // final String id;
+  // const AuthorPageMobile({super.key, required this.id});
   const AuthorPageMobile({super.key});
 
   @override
+  State<AuthorPageMobile> createState() => _AuthorPageMobileState();
+}
+
+class _AuthorPageMobileState extends State<AuthorPageMobile> {
+  int index = 1;
+  @override
   Widget build(BuildContext context) {
+    final loc = Localizations.of<LocaleBase>(context, LocaleBase)!;
+
+    double maxWidth = MediaQuery.of(context).size.width;
+    double maxHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("widget.title"),
-      ),
-      body: Center(
+      body: SizedBox(
+        height: maxHeight,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Center(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  double maxWidth = MediaQuery.of(context).size.width * 0.8; // 80% of screen width
-                  double maxHeight = MediaQuery.of(context).size.height * 0.6; // 60% of screen height
-
-                  // Set fixed dimensions for InAppWebView
-                  double fixedWidth = 700;
-                  double fixedHeight = 400;
-
-                  // Determine the actual width and height to use
-                  double width = fixedWidth < maxWidth ? fixedWidth : maxWidth;
-                  double height = fixedHeight < maxHeight ? fixedHeight : maxHeight;
-
-                  return ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: width,
-                      maxHeight: height,
+            MenuMobile(title: loc.mainExibition.menu),
+            Expanded(child: SizedBox(), flex: 1),
+            // Spacer(),
+            Hero(
+              tag: 'image',
+              child: Card(
+                color: Colors.white,
+                elevation: 0,
+                shape: LinearBorder(),
+                margin: EdgeInsets.zero,
+                child: CustomInkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      HeroDialogRoute(
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: Dialog.fullscreen(
+                              backgroundColor: Colors.white,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Hero(
+                                    tag: 'image',
+                                    child: SizedBox(
+                                      child: Image.asset("assets/_assets/images/main_exhibition/$index.webp"),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.close),
+                                    onPressed: Navigator.of(context).pop,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  child: SizedBox(
+                    width: maxWidth * 0.9,
+                    child: Image.asset(
+                      "assets/_assets/images/main_exhibition/$index.webp",
                     ),
-                    child: InAppWebView(
-                      initialFile: "assets/home/uvod.html",
-                    ),
-                  );
-                },
+                  ),
+                ),
               ),
             ),
+            Expanded(
+              flex: 5,
+              child: Container(
+                alignment: Alignment.bottomLeft,
+                width: maxWidth * 0.9,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        loc.mainExibition.getByKey("me${index}a"),
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 3),
+                      Text(
+                        loc.mainExibition.getByKey("me${index}b"),
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      SizedBox(height: 3),
+                      Text(
+                        loc.mainExibition.getByKey("me${index}c"),
+                        style: TextStyle(fontSize: 12),
+                        // Adjust the font size as needed
+                      ),
+                      SizedBox(height: 3),
+                      Text(
+                        loc.mainExibition.getByKey("me${index}d"),
+                        style: TextStyle(fontStyle: FontStyle.italic, fontSize: 10),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            // Spacer(),
+
+            SizedBox(
+              width: maxWidth * 0.9,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  index > 1
+                      ? CustomInkWell(
+                          onTap: () => setState(() {
+                            index = index - 1;
+                          }),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Image.asset(
+                              "assets/_assets/images/left.png",
+                              // scale: ,
+                            ),
+                          ),
+                        )
+                      : SizedBox(),
+
+                  // Spacer(),
+                  index < 52
+                      ? CustomInkWell(
+                          onTap: () => setState(() {
+                            index = index + 1;
+                          }),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Image.asset(
+                              "assets/_assets/images/right.png",
+                              // scale: ,
+                            ),
+                          ),
+                        )
+                      : SizedBox(),
+                ],
+              ),
+            ),
+            // Spacer(),
+
+            BottomCaruselMobile(
+              path: "assets/main_exibition/menu",
+              numeberOfPictures: 21,
+            ),
+            // Spacer(),
+            HomeMenuMobile(),
+            // const BottomMenu(),
           ],
         ),
       ),
     );
   }
+}
+
+class HeroDialogRoute<T> extends PageRoute<T> {
+  HeroDialogRoute({required this.builder}) : super();
+
+  final WidgetBuilder builder;
+
+  @override
+  bool get opaque => false;
+
+  @override
+  bool get barrierDismissible => true;
+
+  @override
+  Duration get transitionDuration => const Duration(milliseconds: 300);
+
+  @override
+  bool get maintainState => true;
+
+  @override
+  Color get barrierColor => Colors.black54;
+
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+    return FadeTransition(opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut), child: child);
+  }
+
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+    return builder(context);
+  }
+
+  @override
+  // TODO: implement barrierLabel
+  String? get barrierLabel => "";
 }
